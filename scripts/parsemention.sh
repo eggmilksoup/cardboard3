@@ -1,5 +1,5 @@
 #!/bin/sh
-logmentions | while read line
+logmentions $key | while read line
 do
 	rule=false
 	rcp=false
