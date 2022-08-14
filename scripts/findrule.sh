@@ -19,8 +19,9 @@ tail -n +$top /var/git/tns-nomic.git/da-rules.org |
 	else
 		cat
 	fi |
-	sed 's/^\*/\
-\*/g' |
+	sed -E 's/^\*(.*)$/\
+\*\1\
+/g' |
 	sed 's/\*/\\\*/g' |
 	sed 's/  / /' | 
 	tr '\n' ' ' |
