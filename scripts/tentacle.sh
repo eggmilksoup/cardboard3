@@ -4,11 +4,11 @@
 
 export PATH=`pwd`/bin:$PATH
 export key=$(cat data/tentacle-key)
-export annc=$(cat data/channels/announcements)
+export agora=$(cat data/channels/agora)
 
 while true
 do
+	msg $key $agora Collecting eldritch data...
+	scripts/unusual.sh | msg $key $agora
 	scripts/parsemention.sh
-	msg $key $annc Collecting eldritch data...
-	scripts/unusual.sh | msg $key $annc
 done
