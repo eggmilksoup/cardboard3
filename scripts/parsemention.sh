@@ -28,7 +28,7 @@ do
 					msg $key $(printf $line | cut -f 1 -d :) no such rcp \"$word\"
 				elif $rule
 				then
-					if [ $word = list ]
+					if [ "$word" = "list" ]
 					then
 						scripts/rulelist.sh | msg $key $(printf $line | cut -f 1 -d :)
 						rule=false
