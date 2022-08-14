@@ -17,8 +17,7 @@ do
 			*)
 				if $rcp
 				then
-					sed 's/  / /' < 
-						/var/git/tns-nomic-records/rcp/$word |
+					sed 's/  / /' /var/git/tns-nomic-records/rcp/$word |
 						tr '\n' ' ' |
 						sed 's/  /\n\n/' |
 						msg $key $agora &&
