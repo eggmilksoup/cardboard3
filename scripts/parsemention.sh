@@ -19,7 +19,7 @@ do
 				then
 					sed 's/  / /' /var/git/tns-nomic-records/rcp/$word |
 						tr '\n' ' ' |
-						sed 's/  /\n\n/' |
+						sed 's/  /\n\n/g' |
 						msg $key $(printf $line | cut -f 1 -d :) &&
 						continue
 					msg $key $(printf $line | cut -f 1 -d :) no such rcp \"$word\"
