@@ -21,17 +21,19 @@ do
 						/var/git/tns-nomic-records/rcp/$word |
 						tr '\n' ' ' |
 						sed 's/  /\n\n/' |
-						msg $key $testchan &&
+						msg $key $agora &&
 						continue
-					msg $key $annc no such rcp \"$word\"
+					msg $key $(printf $line | cut -f 1 -d :) no such rcp \"$word\"
 				elif $rule
 					if [ $word = list ]
 					then
-						scripts/rulelist.sh | msg $key $testchan
+						scripts/rulelist.sh | msg $key $(printf $line | cut -f 1 -d :)
 						rule=false
 					fi
-					scripts/findrule.sh $word | msg $key $testchan && continue
-					msg $key $annc no such rule \"$word\"
+					scripts/findrule.sh $word |
+						msg $key $(printf $line | cut -f 1 -d :) &&
+						continue
+					msg $key $(printf $line | cut -f 1 -d :) no such rule \"$word\"
 				fi
 			;;
 		esac
