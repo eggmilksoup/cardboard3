@@ -14,6 +14,8 @@ bot=$(tail -n +$(($top + 1)) /var/git/tns-nomic.git/da-rules.org |
 
 tail -n +$top /var/git/tns-nomic.git/da-rules.org |
 	head -n $bot |
+	sed 's/^\*/\
+\*/g' |
 	sed 's/\*/\\\*/g' |
 	sed 's/  / /' | 
 	tr '\n' ' ' |
