@@ -9,7 +9,7 @@ import "time"
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Fprintf(os.Stderr, "usage: %s apikey ...\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "usage: %s apikey\n", os.Args[0])
 		os.Exit(1)
 	}
 	discord, _ := discordgo.New("Bot " + os.Args[1])
@@ -23,6 +23,6 @@ func main() {
 			}
 		}
 	})
-	hours, _ := time.ParseDuration(fmt.Sprintf("%dh%dm", rand.Intn(67) + 6, rand.Intn(60)))
+	hours, _ := time.ParseDuration(fmt.Sprintf("%dh%dm", rand.Intn(66) + 6, rand.Intn(60)))
 	time.Sleep(hours)
 }

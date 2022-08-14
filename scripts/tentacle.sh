@@ -8,7 +8,7 @@ export annc=$(cat data/channels/announcements)
 
 while true
 do
-	mentionlog | scripts/parsemention.sh
+	logmention $key | scripts/parsemention.sh
 	msg $key $annc Collecting eldritch data...
 	scripts/unusual.sh | msg $key $annc
 done
