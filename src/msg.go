@@ -12,7 +12,7 @@ func main() {
 	}
 	var txt string
 	if len(os.Args) == 3 {
-		bin, _ := os.Readfile("/dev/stdin")
+		bin, _ := os.ReadFile("/dev/stdin")
 		txt = string(bin)
 	} else {
 		txt = ""
