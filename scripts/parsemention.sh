@@ -22,7 +22,7 @@ do
 						sed 's/  /\
 \
 /g' |
-						sed 's/[^^]	//g'
+						sed 's/[^^]	//g' |
 						msg $key $(printf $line | cut -f 1 -d :) &&
 						continue
 					msg $key $(printf $line | cut -f 1 -d :) no such rcp \"$word\"
