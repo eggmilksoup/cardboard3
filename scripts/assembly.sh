@@ -5,7 +5,7 @@
 msg $key $annc "$el, it is time to schedule the Eldritch Assembly."
 
 finished=false
-while !$finished
+while ! $finished
 do
 	logdms $key $(
 		head -n 1 data/players             # skylar

@@ -4,13 +4,16 @@
 
 export PATH=`pwd`/bin:$PATH
 export key=$(cat data/api-key)
-export testchan=$(cat data/channels/teschan)
+export testchan=$(cat data/channels/testchan)
+export rcpchan=$(cat data/channels/rcpchan)
 export annc=$(cat data/channels/announcements)
+export election=$(cat data/channels/election)
 export el="<@&1001702350571974716>"
 export mention=mention
 
 ## debug overrides:
 # export annc=$testchan
+# export rcpchan=$testchan
 # export el="@Eldritch Legislators"
 # export mention=username
 

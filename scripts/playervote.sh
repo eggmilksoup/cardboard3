@@ -2,11 +2,11 @@
 
 # playervote.sh version 3.1.0/303
 
+[ -f data/finished ] && rm data/finished
 while true
 do
-	emojicat $key $2 | while read emoji
+	emojicat $key $2 | while ! [ -f data/finished ] && read emoji
 	do
-		finished=false
 		if grep -q $emoji data/emoji
 		then
 			n=$(countemoji $key $1 $2 $emoji)
@@ -22,28 +22,22 @@ do
 					)
 				)"
 				msg $key $annc "$el, $player has received the necessary votes to win.  The poll will close in 15 minutes unless a vote for $player is retracted."
-				if scripts/playerclose.sh $1 $2
-				then
-					finished=true
-				fi
+				scripts/playerclose.sh $1 $2 $3 && touch data/finished
 			else
 				n=0
-				for e in $(tr '\n' ' ' < /data/emoji)
+				for e in $(tr '\n' ' ' < data/emoji)
 				do
-					n=$(($n + $(countemoji $key $1 $2 $emoji)))
+					n=$(($n + $(countemoji $key $1 $2 $e)))
 				done
-				[ $n -eq $(wc -l < data/players) ] && if scripts/playerclose.sh
+				if [ $n -eq $(wc -l < data/players) ]
 				then
 					msg $key $annc "$el, everybody has voted, but nobody received enough votes to win the election.  The player(s) with the least votes will be rolled off and another vote will take place in 15 minutes unless a vote is retracted."
-					if scripts/favclose.sh $1 $2
-					then
-						finished=true
-					fi
+					scripts/playerclose.sh $1 $2 $3 && touch data/finished
 				fi
 			fi
 		fi
-	$finished && break
 	done
+	[ -f data/finished ] && break
 	out=""
 	cp data/players data/nonvoters
 	for player in $(

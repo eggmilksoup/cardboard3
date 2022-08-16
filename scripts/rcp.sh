@@ -2,9 +2,10 @@
 
 # rcp.sh version 3.0.0
 
+[ -f data/finished ] && rm data/finished
 while true
 do
-	rcp $key $1 | while read line
+	rcp $key $2 | while ! [ -f data/finished ] && read line
 	do
 		case $line in
 			y)
@@ -15,10 +16,7 @@ do
 					)" -eq "$(
 						wc -l < data/players
 					)" ] && msg $key $annc "$el all players have voted.  The poll will close in 15 minutes unless a vote is removed." > /dev/null
-					if scripts/close-rcp.sh $1 $2
-					then
-						finished=true
-					fi
+					scripts/close-rcp.sh $1 $2 && touch data/finished
 				elif [ "$(($(
 					count $key $1 $2 y
 				) + $(
@@ -27,11 +25,8 @@ do
 					wc -l < data/players
 				) ]]
 				then
-					 msg $key $annc "$el all players have voted.  The poll will close in 15 minutes unless a vote is removed." > /dev/null
-					if scripts/close-rcp.sh $1 $2
-					then
-						finished=true
-					fi
+					msg $key $annc "$el all players have voted.  The poll will close in 15 minutes unless a vote is removed." > /dev/null
+					scripts/close-rcp.sh $1 $2 && touch data/finished
 				fi
 					
 			;;
@@ -52,20 +47,16 @@ do
 				) ]
 				then
 					 msg $key $annc "$el all players have voted.  The poll will close in 15 minutes unless a vote is removed." > /dev/null
-					if scripts/close-rcp.sh $1 $2
-					then
-						finished=true
-					fi
+					 scripts/close-rcp.sh $1 $2 && touch data/finished
 				fi
 			;;
 		esac
-		$finished && break
 	done
-	$finished && break
+	[ -f data/finished ] && break
 	cp data/players data/nonvoters
 	for voter in "$( {
-		identify-voters $1 $2 y
-		identify-voters $1 $2 n
+		identify-voters $key $1 $2 y
+		identify-voters $key $1 $2 n
 	} | tr '\n' ' ')"
 	do
 		grep -v $voter data/nonvoters | sponge data/nonvoters

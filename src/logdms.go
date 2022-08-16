@@ -19,6 +19,9 @@ func main() {
 			for i := 2; i < len(os.Args); i ++ {
 				if os.Args[i] == event.Message.Author.ID {
 					fmt.Printf("%s:%s:%s\n", event.Message.ChannelID, event.Message.ID, event.Message.Content)
+					if event.Message.Content == "send rcp" {
+						os.Exit(0)
+					}
 					break
 				}
 			}

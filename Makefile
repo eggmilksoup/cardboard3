@@ -1,5 +1,6 @@
 all: bin/count           \
      bin/countemoji      \
+     bin/emojicat        \
      bin/formatrcp       \
      bin/identify-voters \
      bin/logdms          \
@@ -18,6 +19,9 @@ bin/count: src/count.go
 
 bin/countemoji: src/countemoji.go
 	cd bin && go build ../src/countemoji.go
+
+bin/emojicat: src/emojicat.go
+	cd bin && go build ../src/emojicat.go
 
 bin/formatrcp: src/formatrcp.go
 	cd bin && go build ../src/formatrcp.go
