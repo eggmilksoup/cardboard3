@@ -1,4 +1,4 @@
-// mention.go version 3.1.0
+// username.go version 3.1.0
 
 package main
 import "fmt"
@@ -19,12 +19,12 @@ func main() {
 				break
 			}
 			usr, _ := discord.User(id)
-			fmt.Println(usr.Mention())
+			fmt.Println(usr.Username)
 		}
 	} else {
 		for i := 2; i < len(os.Args); i ++ {
 			usr, _ := discord.User(os.Args[i])
-			fmt.Println(usr.Mention())
+			fmt.Println(usr.Username)
 		}
 	}
 }

@@ -1,4 +1,7 @@
 #!/bin/sh
+
+# parsemention 3.0.0
+
 logmentions $key | while read line
 do
 	rule=false

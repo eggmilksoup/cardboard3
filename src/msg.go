@@ -1,9 +1,9 @@
+// msg.go version 3.0.0
+
 package main
 import "fmt"
 import "github.com/bwmarrin/discordgo"
 import "os"
-
-// msg.go version 3.0.0
 
 func main() {
 	if len(os.Args) < 3 {

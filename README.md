@@ -1,4 +1,4 @@
-Cardbaord 3.0
+Cardbaord 3.1
 =============
 A set of binaries designed for easy, modular scriptable Discord bot use.
 
@@ -25,4 +25,6 @@ TNS Members Hoping to Revive the Bots
     make
     # Information Tentacles
     scripts/tentacles.sh &
+    # Eldritch Speaker
+    scripts/rcp-loop.sh &
 ```

@@ -1,11 +1,11 @@
+// logmentions.go version 3.0.0
+
 package main
 import "fmt"
 import "github.com/bwmarrin/discordgo"
 import "math/rand"
 import "os"
 import "time"
-
-// logmentions.go version 3.0.0
 
 func main() {
 	if len(os.Args) < 2 {
