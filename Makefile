@@ -8,6 +8,7 @@ all: bin/count           \
      bin/mention         \
      bin/mkthread        \
      bin/msg             \
+     bin/msgdel          \
      bin/nickname        \
      bin/pullrcp         \
      bin/rcp             \
@@ -15,49 +16,52 @@ all: bin/count           \
      bin/username
 
 bin/count: src/count.go
-	cd bin && go build ../src/count.go
+	go build -o bin/count src/count.go
 
 bin/countemoji: src/countemoji.go
-	cd bin && go build ../src/countemoji.go
+	go build -o bin/countemoji src/countemoji.go
 
 bin/emojicat: src/emojicat.go
-	cd bin && go build ../src/emojicat.go
+	go build -o bin/emojicat src/emojicat.go
 
 bin/formatrcp: src/formatrcp.go
-	cd bin && go build ../src/formatrcp.go
+	go build -o bin/formatrcp src/formatrcp.go
 
 bin/identify-voters: src/identify-voters.go
-	cd bin && go build ../src/identify-voters.go
+	go build -o bin/identify-voters src/identify-voters.go
 
 bin/logdms: src/logdms.go
-	cd bin && go build ../src/logdms.go
+	go build -o bin/logdms src/logdms.go
 
 bin/logmentions: src/logmentions.go
-	cd bin && go build ../src/logmentions.go
+	go build -o bin/logmentions src/logmentions.go
 
 bin/mention: src/mention.go
-	cd bin && go build ../src/mention.go
+	go build -o bin/mention src/mention.go
 
 bin/mkthread: src/mkthread.go
-	cd bin && go build ../src/mkthread.go
+	go build -o bin/mkthread src/mkthread.go
 
 bin/msg: src/msg.go
-	cd bin && go build ../src/msg.go
+	go build -o bin/msg src/msg.go
+
+bin/msgdel: src/msgdel.go
+	go build -o bin/msgdel src/msgdel.go
 
 bin/nickname: src/nickname.go
-	cd bin && go build ../src/nickname.go
+	go build -o bin/nickname src/nickname.go
 
 bin/pullrcp: src/pullrcp.go
-	cd bin && go build ../src/pullrcp.go
+	go build -o bin/pullrcp src/pullrcp.go
 
 bin/rcp: src/rcp.go
-	cd bin && go build ../src/rcp.go
+	go build -o bin/rcp src/rcp.go
 
 bin/status: src/status.go
-	cd bin && go build ../src/status.go
+	go build -o bin/status src/status.go
 
 bin/username: src/username.go
-	cd bin && go build ../src/username.go
+	go build -o bin/username src/username.go
 
 clean:
 	rm bin/*

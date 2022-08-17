@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# playerclose.sh version 3.1.0/303
+# playerclose.sh version 3.2.0/303
 
 status $key "Polls closing soon!"
 
@@ -11,16 +11,13 @@ do
 	n=$(countemoji $key $1 $2 $emoji)
 	if [ $n -gt $(($(wc -l < data/players) / 2)) ]
 	then
+		playerno=$(grep -n $emoji data/emoji | cut -f 1 -d :)
 		msg $key $annc "$el, $(
-			$mention $key $(
-				head -n $(
-					grep -n $emoji data/emoji |
-						cut -f 1 -d :
-				) data/players
-			)
+			$mention $key $(head -n $playerno data/players)
 		) has won the vote, and $(
 			case "$3" in
 				("political")
+					scripts/flavoradd.sh $playerno
 					echo "has received one political flavor."
 				;;
 				# ("secretkeeper")
